@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    status          : 这个用于设置log4j2自身内部的信息输出,可以不设置,当设置成trace时,会看到log4j2内部各种详细输出
+    monitorInterval : Log4j能够自动检测修改配置文件和重新配置本身, 设置间隔秒数。
+-->
+<Configuration status="WARN" monitorInterval="600">
+
+    <Properties>
+        <property name="APP_NAME" value="im-startup"/>
+        <Property name="LOG_HOME">/tmp/logs/im.local</Property>
+        <Property name="PATTERN">%d [%t] [%-5level] %logger{64} -> %m%n%ex</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="STDOUT">
+            <PatternLayout pattern="${PATTERN}"/>
+        </Console>
+        <RollingFile name="ROLLING"
+                     fileName="${LOG_HOME}/${APP_NAME}.log"
+                     filePattern="${LOG_HOME}/${APP_NAME}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+        <!--<Kafka name="KAFKA" topic="im-log">-->
+            <!--<PatternLayout pattern="%date %message"/>-->
+            <!--<Property name="bootstrap.servers">-->
+                <!--192.168.20.206:9092,192.168.20.207:9092,192.168.20.208:9092-->
+            <!--</Property>-->
+        <!--</Kafka>-->
+    </Appenders>
+
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="ROLLING"/>
+        </Root>
+        <logger name="com.im"              level="INFO"/>
+        <logger name="io.netty"            level="DEBUG"/>
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="com.mongodb"         level="INFO"/>
+        <Logger name="org.apache.kafka"    level="INFO"/> <!-- avoid recursive logging -->
+        <!--<logger name="log2kafka"           level="INFO">-->
+            <!--<AppenderRef ref="KAFKA"/>-->
+        <!--</logger>-->
+    </Loggers>
+</Configuration>
