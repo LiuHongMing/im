@@ -2,25 +2,25 @@ package com.im.netty.xmpp.handler;
 
 import com.google.common.base.Preconditions;
 import com.im.netty.auth.TokenBuilder;
-import com.im.netty.session.ConnectionManager;
 import com.im.netty.session.Connection;
+import com.im.netty.session.ConnectionManager;
 import com.im.netty.ssl.SslConfig;
 import com.im.netty.xml.XMLElement;
 import com.im.netty.xmpp.Constants;
 import com.im.netty.xmpp.Packet;
 import com.im.netty.xmpp.exception.StreamOpenException;
-import com.im.netty.xmpp.smack.stanza.StreamTls;
 import com.im.netty.xmpp.smack.stanza.Stream;
+import com.im.netty.xmpp.smack.stanza.StreamTls;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.ssl.SslHandler;
+import org.apache.commons.lang3.StringUtils;
 import org.jivesoftware.smack.packet.Stanza;
 import org.jivesoftware.smack.packet.StartTls;
 import org.jivesoftware.smack.util.XmlStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
 
 public class NegotiationHandler extends ChannelInboundHandlerAdapter {
 
