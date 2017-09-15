@@ -2,9 +2,9 @@ package com.im.netty.xmpp.smack.stanza;
 
 import com.im.netty.utils.XMLUtil;
 import com.im.netty.xmpp.SimpleElement;
+import org.apache.commons.lang3.StringUtils;
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.packet.Stanza;
-import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

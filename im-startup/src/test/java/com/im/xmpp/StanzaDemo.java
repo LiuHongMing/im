@@ -3,10 +3,10 @@ package com.im.xmpp;
 import com.google.common.base.Preconditions;
 import com.im.netty.xmpp.Constants;
 import com.im.netty.xmpp.smack.stanza.Stream;
+import org.apache.commons.lang3.StringUtils;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.StartTls;
 import org.jivesoftware.smack.util.XmlStringBuilder;
-import org.springframework.util.StringUtils;
 
 import java.util.concurrent.ExecutionException;
 
