@@ -1,22 +1,8 @@
 package io.netty.demo;
 
-import io.netty.util.Recycler;
 import io.netty.util.internal.RecyclableArrayList;
 
-public class RecycleArrayList {
-
-    private static final Recycler<RecycleArrayList> RECYCLY = new Recycler<RecycleArrayList>() {
-        @Override
-        protected RecycleArrayList newObject(Handle<RecycleArrayList> handle) {
-            return new RecycleArrayList(handle);
-        }
-    };
-
-    private final Recycler.Handle<RecycleArrayList> handle;
-
-    public RecycleArrayList(Recycler.Handle<RecycleArrayList> handle) {
-        this.handle = handle;
-    }
+public class Recyclable {
 
     public static void main(String[] args) throws InterruptedException {
         int i = 0, times = 1000000;
@@ -31,6 +17,6 @@ public class RecycleArrayList {
             System.out.println("count:[" + count + "]");
             Thread.sleep(1);
         }
-        System.out.println(RecycleArrayList.class.getResource("/"));
+        System.out.println(Recyclable.class.getResource("/"));
     }
 }
